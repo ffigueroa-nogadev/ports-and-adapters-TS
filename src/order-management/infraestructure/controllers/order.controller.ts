@@ -5,7 +5,7 @@ import { Order } from "../../domain/order";
 
 // tsoa no permite parámetros en el constructor de la clase que extiende del constructor. Por eso lo siguiente no tiene inyección de dependencia
 
-@Route('order')
+@Route('orders')
 export class OrderController extends Controller{
   private readonly orderService: OrderService;
   constructor() {

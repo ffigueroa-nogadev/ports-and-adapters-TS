@@ -47,7 +47,7 @@
 		"contact": {}
 	},
 	"paths": {
-		"/order": {
+		"/orders": {
 			"post": {
 				"operationId": "AddOrder",
 				"responses": {
@@ -110,7 +110,7 @@
 				"parameters": []
 			}
 		},
-		"/order/{orderId}": {
+		"/orders/{orderId}": {
 			"get": {
 				"operationId": "GetOrderByOrderId",
 				"responses": {
