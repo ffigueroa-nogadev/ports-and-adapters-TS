@@ -1,6 +1,7 @@
 import express, { json, Request, Response, urlencoded } from "express"
 import { RegisterRoutes } from "./build/routes";
 import { errorHandler } from "./middlewares/errorHandler";
+import { envs } from "./envs";
 
 const app = express()
 
@@ -19,6 +20,6 @@ RegisterRoutes(app);
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log('running in the port 3000');
+app.listen(envs.PORT, () => {
+  console.log(`The App "${envs.APP_NAME}" is running in: http://localhost:${envs.PORT}`);
 })
