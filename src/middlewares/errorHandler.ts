@@ -4,6 +4,7 @@ import express, {
   NextFunction,
 } from "express";
 import { ValidateError } from "tsoa";
+import { AppError } from "./customErrors";
 
 export const errorHandler = (
   err: unknown,
@@ -18,6 +19,11 @@ export const errorHandler = (
       details: err?.fields,
     });
   }
+  
+  if (err instanceof AppError) {
+    res.status(err.statusCode).json({statusCode: err.statusCode, message: err.message});
+  }
+
   if (err instanceof Error) {
     return res.status(500).json({
       message: "Internal Server Error",
