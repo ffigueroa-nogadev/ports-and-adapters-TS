@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "orders" (
+    "orderId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "total" INTEGER NOT NULL,
+    "productId" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

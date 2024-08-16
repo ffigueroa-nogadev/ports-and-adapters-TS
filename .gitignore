@@ -237,10 +237,9 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,macos,linux,node
 
 # Prisma
-prisma/.env
-prisma/migrations/
-prisma/dev.db
-prisma/dev.db-journal
+**/prisma/.env
+**/prisma/dev.db
+**/prisma/dev.db-journal
 
 # TSOA
 src/build/routes.ts
