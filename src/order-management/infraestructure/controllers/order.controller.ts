@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Path, Post, Route } from "tsoa"
+import { Body, Controller, Delete, Get, Path, Post, Route } from "tsoa"
 import { OrderService } from "../../application/order.service"
 import { OrderRepositoryDummyData, OrderRepositoryPrisma } from "../order.repository";
 import { Order } from "../../domain/order";
@@ -28,5 +28,10 @@ export class OrderController extends Controller{
   @Get('{orderId}')
   public getOrderByOrderId(@Path() orderId: number): Promise<Order | null>{
     return this.orderService.getOrderByOrderId(orderId);
+  }
+
+  @Delete('{orderId}')
+  public deleteOrderByOrderId(@Path() orderId: number): Promise<Order | null>{
+    return this.orderService.deleteOrderById(orderId);
   }
 };

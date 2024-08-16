@@ -20,4 +20,8 @@ export class OrderService {
   public async getOrderByOrderId(orderId: number): Promise<Order | null>{
     return await this.orderRepository.getOrderByOrderId(orderId);
   }
+
+  public async deleteOrderById(orderId: number): Promise<Order | null > {
+    return await this.orderRepository.deleteOrderById(orderId);
+  }
 }

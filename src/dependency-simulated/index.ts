@@ -41,4 +41,17 @@ const getOneOrder = async (orderId:number): Promise<Order> =>{
     }
   })
 }
-export { createOrder, getOrders, getOneOrder };
+
+const deleteOneOrder = async (orderId: number): Promise<Order | null>=>{
+  const order = orderList.find(order=> order.orderId === orderId);
+  return new Promise((res, rej)=> {
+    if (!order) {
+      rej("La orden buscada no existe")
+    }else{
+      orderList.splice(orderList.findIndex(o=>o.orderId === order.orderId), 1);
+      res(order);
+    }
+  })
+}
+
+export { createOrder, getOrders, getOneOrder, deleteOneOrder };

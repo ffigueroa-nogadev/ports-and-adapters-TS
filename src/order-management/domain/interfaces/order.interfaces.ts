@@ -4,4 +4,5 @@ export interface IOrderRepository{
   addOrder(order:Order): Promise<Order>; // Es un contrato a cumplir
   getAllOrders(): Promise<Order[]>;
   getOrderByOrderId(orderId: number): Promise<Order | null>;
+  deleteOrderById(orderId: number):Promise<Order | null>;
 }
