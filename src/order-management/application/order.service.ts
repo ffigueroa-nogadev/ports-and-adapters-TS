@@ -17,7 +17,7 @@ export class OrderService {
     return await this.orderRepository.getAllOrders();
   }
 
-  public async getOrderByOrderId(orderId: number): Promise<Order>{
+  public async getOrderByOrderId(orderId: number): Promise<Order | null>{
     return await this.orderRepository.getOrderByOrderId(orderId);
   }
 }
