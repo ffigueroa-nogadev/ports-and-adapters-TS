@@ -31,3 +31,28 @@ Es la manera en la que se organizan las carpetas.
    - Domain
    - Infraestructure
    - Application
+
+## Para utilizar prisma
+
+1. Instalar
+```bash
+npm install prisma --save-dev
+```
+2. Configurar DB de prueba "sqlite"
+```bash
+npx prisma init --datasource-provider sqlite
+```
+3. Crear entidades
+```prisma
+model Order {
+  orderId   Int   @id @default(autoincrement())
+  total     Int
+  productId Int
+  createdAt DateTime
+  @@map("orders")
+}
+```
+4. Correr migración
+```bash
+npx prisma migrate dev --name init
+```
