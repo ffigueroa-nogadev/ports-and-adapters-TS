@@ -21,3 +21,22 @@ export class BadRequestError extends AppError {
     super(message, 400);
   }
 }
+
+export class DriveUploadError extends AppError {
+  constructor(message: string = "Error al cargar el archivo a Google Drive") {
+    super(message, 500); 
+  }
+}
+
+export class DriveDeleteError extends AppError {
+  constructor(message: string = "Error al eliminar el archivo de Google Drive") {
+    super(message, 500);
+  }
+}
+
+export class DrivePermissionError extends AppError {
+  constructor(message: string = "Error al cambiar los permisos del archivo en Google Drive") {
+    super(message, 403);
+  }
+}
+

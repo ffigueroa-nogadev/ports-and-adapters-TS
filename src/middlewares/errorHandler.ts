@@ -25,6 +25,8 @@ export const errorHandler = (
   }
 
   if (err instanceof Error) {
+    console.log({err});
+    
     return res.status(500).json({
       message: "Internal Server Error",
     });
