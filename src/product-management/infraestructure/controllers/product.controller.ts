@@ -54,17 +54,27 @@ export class ProductController extends Controller {
       requestBody.price
     );
     console.log("driveDataSavedList => ", driveDataSavedList);
-    
+
     const images = await this.imageService.createMultipleImages(
       driveDataSavedList.map(
-        ({ fileId: storageId, webViewLink: imageUrl }) => ({
-          imageUrl,
+        ({ fileId: storageId, webContentLink, webViewLink }) => ({
+          webContentLink,
+          webViewLink,
           storageId,
           productId: product.id,
         })
       )
     );
-    
+
     return { ...product, images };
+  }
+
+  @Get("{productId}/images")
+  public async getProductById(@Path() productId: number) {
+    const product = await this.productService.getProductById(productId);
+    const imagesOfProduct = await this.imageService.getImagesByProductId(
+      product.id
+    );
+    return { ...product, images: imagesOfProduct };
   }
 }
