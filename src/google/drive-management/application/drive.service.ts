@@ -17,7 +17,7 @@ export class DriveService {
     return this.driveRepository.deleteFile(fileId);
   }
 
-  public async generatePublicUrl(fileId: string): Promise<DriveFileDTO> {
+  public async generatePublicUrl(fileId: string): Promise<void> {
     return this.driveRepository.generatePublicUrl(fileId);
   }
 }

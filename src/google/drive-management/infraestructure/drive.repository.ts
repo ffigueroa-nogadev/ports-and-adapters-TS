@@ -16,20 +16,21 @@ export class DriveRepository implements IDriveFileRepository {
       mimeType: file.mimetype,
       body: bufferToStream(file.buffer),
     };
-    const { data } = await driveClient.files.create({ requestBody, media,fields: "id, name, webViewLink, mimeType" });
+    const { data } = await driveClient.files.create({ requestBody, media,fields: "id, name, webContentLink, mimeType, webViewLink" });
 
     if (!data.id || !data.name) throw new DriveUploadError();
-    if (!data.webViewLink) throw new DrivePermissionError();
-
+    if (!data.webContentLink || !data.webViewLink) throw new DrivePermissionError();
+    await this.generatePublicUrl(data.id);  
     return {
       fileId: data.id,
       name: data.name,
       mimeType: file.mimetype,
-      webViewLink: data.webViewLink,
+      webContentLink: data.webContentLink,
+      webViewLink: data.webViewLink
     };
   }
 
-  async generatePublicUrl(fileId: string): Promise<DriveFileDTO> {
+  async generatePublicUrl(fileId: string): Promise<void> {
     await driveClient.permissions.create({
       fileId,
       requestBody: {
@@ -37,20 +38,6 @@ export class DriveRepository implements IDriveFileRepository {
         type: "anyone",
       },
     });
-    const { data } = await driveClient.files.get({
-      fileId,
-      fields: "webViewLink, id, mimeType, name",
-    });
-    if (!data.id || !data.name || !data.mimeType || !data.webViewLink) {
-      throw new DrivePermissionError();
-    }
-
-    return {
-      fileId: data.id,
-      name: data.name,
-      mimeType: data.mimeType,
-      webViewLink: data.webViewLink,
-    };
   }
 
   async deleteFile(fileId: string): Promise<void> {
