@@ -22,12 +22,16 @@ export class ImageService {
     return this.imageRepository.uptdateImageById(id, dto);
   }
 
-  public async createImage(id: number, webViewLink: string, fileId: string, data: createImageDTO): Promise<Image> {
+  public async createImage(data: createImageDTO): Promise<Image> {
     return this.imageRepository.createImage(data);
   }
 
   public async createMultipleImages(data: createImageDTO[]):Promise<Image[]>{
     return await this.imageRepository.createMultipleImages(data);
+  }
+  
+  public async getImagesByProductId(productId: number): Promise<Image[]>{
+    return await this.imageRepository.getImagesByProductId(productId);
   }
   
 }

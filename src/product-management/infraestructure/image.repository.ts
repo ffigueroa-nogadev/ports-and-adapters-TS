@@ -42,4 +42,8 @@ export class ImageRepositoryPrisma implements IImageRepository {
     const images = await Promise.all(imagePromises);
     return  images;
   }
+  async getImagesByProductId(productId: number): Promise<Image[]> {
+    const images = await prisma.productImage.findMany({where: {productId}});
+    return images;
+  }
 }

@@ -1,7 +1,8 @@
 import { Image } from "../image";
 export interface createImageDTO {
   productId: number;
-  imageUrl: string;
+  webViewLink: string;
+  webContentLink: string;
   storageId: string;
 }
 export interface IImageRepository {
@@ -15,4 +16,5 @@ export interface IImageRepository {
     dto: { imageUrl?: string; storageId?: string }
   ): Promise<Image>;
   createMultipleImages(data: createImageDTO[]):Promise<Image[]>;
+  getImagesByProductId(productId: number):Promise<Image[]>;
 }
